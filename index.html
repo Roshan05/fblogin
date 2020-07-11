@@ -52,16 +52,15 @@
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me?fields=name,email,first_name,last_name,gender,locale', function(response) {
-      console.log('Successful login for: ' + response.name);
-       var gen = 'male';
-      if(response.gender=='male'){
+   FB.api('/me?fields=name,email,first_name,last_name,gender,locale', function(response) {
+      console.log(JSON.stringify(response));
+      var gen = 'male';
+      if(response.gender=='male')
         gen = 'female';
-      }
       var string = 'Thanks for logging in, <h2><strong>' + response.name + '!</strong></h2>' ;
       string += '<p> Your Email : '+ response.email + '</p> ';
       string += '<p> You are interested in : '+ gen + ' . Is that right !!! </p> ';
-      document.getElementById('status').innerHTML = string;  
+      document.getElementById('status').innerHTML = string;
     });
   }
 
